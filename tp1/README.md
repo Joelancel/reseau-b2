@@ -96,12 +96,8 @@ Durée approximative des boucles en millisecondes :
     Minimum = 10ms, Maximum = 10ms, Moyenne = 10ms
     ```
 
-
----
-
 ☀️ **Go mater une vidéo youtube et déterminer, pendant qu'elle tourne...**
-```
-C:\Users\Joel>netstat -n
+``` C:\Users\Joel>netstat -n
 -    142.250.180.142:443 
 - 443
 - 10.33.76.181:55491
@@ -111,9 +107,9 @@ C:\Users\Joel>netstat -n
 ☀️ **Requêtes DNS**
 
 Déterminer...
-
+```
 - à quelle adresse IP correspond le nom de domaine `www.ynov.com`
-```C:\Users\Joel>nslookup www.ynov.com
+C:\Users\Joel>nslookup www.ynov.com
 Serveur :   dns.google
 Address:  8.8.8.8
 
@@ -124,7 +120,8 @@ Addresses:  2606:4700:20::ac43:4ae2
           2606:4700:20::681a:be9
           104.26.10.233
           172.67.74.226
-          104.26.11.233```
+          104.26.11.233
+ ```
 
 - à quel nom de domaine correspond l'IP `174.43.238.89`
 ```
