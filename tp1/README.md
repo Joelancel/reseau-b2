@@ -28,9 +28,11 @@ C:\Users\Joel>ipconfig -all
  ```
 
 ☀️ **Déso pas déso**
+```
 - 10.33.64.0 
 - 10.33.79.255
 - 4096
+```
 ---
 
 ☀️ **Hostname**
