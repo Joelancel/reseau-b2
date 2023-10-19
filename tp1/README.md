@@ -152,10 +152,10 @@ Addresses:  2606:4700:20::681a:ae9
 ---
 
 ☀️ **IP publique**
-
-Déterminer...
-
-- l'adresse IP publique de la passerelle du réseau (le routeur d'YNOV donc si vous êtes dans les locaux d'YNOV quand vous faites le TP)
+```
+PS C:\Users\joela> curl ifconfig.me
+Content           : 195.7.117.146
+```
 
 ---
 
@@ -188,33 +188,24 @@ Faites *clean* 🧹, vous êtes des grands now :
 ☀️ **Capture ARP**
 
 - 📁 fichier `arp.pcap`
-- capturez un échange ARP entre votre PC et la passerelle du réseau
-
-> Si vous utilisez un filtre Wireshark pour mieux voir ce trafic, précisez-le moi dans le compte-rendu.
+Filtrage sur Arp pour voir que les traffic arp 
+[Lien vers capture ARP](./capture%20arp/arp.pcapng)
 
 ---
 
 ☀️ **Capture DNS**
 
-- 📁 fichier `dns.pcap`
-- capturez une requête DNS vers le domaine de votre choix et la réponse
-- vous effectuerez la requête DNS en ligne de commande
+Filtrage sur Dns  pour voir que les traffic dns 
 
-> Si vous utilisez un filtre Wireshark pour mieux voir ce trafic, précisez-le moi dans le compte-rendu.
-
+[Lien vers capture ARP](./capture%20arp/dns%20cours.pcapng)
 ---
 
 ☀️ **Capture TCP**
 
-- 📁 fichier `tcp.pcap`
-- effectuez une connexion qui sollicite le protocole TCP
-- je veux voir dans la capture :
-  - un 3-way handshake
-  - un peu de trafic
-  - la fin de la connexion TCP
+Filtrage sur TCP pour voir que les traffic tcp
 
-> Si vous utilisez un filtre Wireshark pour mieux voir ce trafic, précisez-le moi dans le compte-rendu.
 
+[Lien vers capture ARP](./capture%20arp/traffic1.pcapng)
 ---
 
 ![Packet sniffer](img/wireshark.jpg)
