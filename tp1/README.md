@@ -161,23 +161,16 @@ Content           : 195.7.117.146
 
 ☀️ **Scan réseau**
 
-Déterminer...
+```C:\Users\joela>nmap -sn 10.33.64.0/20
+Starting Nmap 7.94 ( https://nmap.org ) at 2023-10-19 10:34 Paris, Madrid (heure dÆÚtÚ)
+Nmap scan report for 10.33.64.0
+Nmap scan report for 10.33.76.181
+Host is up.
+Nmap done: 4096 IP addresses (827 hosts up) scanned in 173.27 seconds
+```
 
-- combien il y a de machines dans le LAN auquel vous êtes connectés
-
-> Allez-y mollo, on va vite flood le réseau sinon. :)
-
-![Stop it](./img/stop.png)
 
 # III. Le requin
-
-Faites chauffer Wireshark. Pour chaque point, je veux que vous me livrez une capture Wireshark, format `.pcap` donc.
-
-Faites *clean* 🧹, vous êtes des grands now :
-
-- livrez moi des captures réseau avec uniquement ce que je demande et pas 40000 autres paquets autour
-  - vous pouvez sélectionner seulement certains paquets quand vous enregistrez la capture dans Wireshark
-- stockez les fichiers `.pcap` dans le dépôt git et côté rendu Markdown, vous me faites un lien vers le fichier, c'est cette syntaxe :
 
 ```markdown
 [Lien vers capture ARP](./captures/arp.pcap)
@@ -208,6 +201,3 @@ Filtrage sur TCP pour voir que les traffic tcp
 [Lien vers capture ARP](./capture%20arp/traffic1.pcapng)
 ---
 
-![Packet sniffer](img/wireshark.jpg)
-
-> *Je sais que je vous l'ai déjà servi l'an dernier lui, mais j'aime trop ce meme hihi 🐈*
