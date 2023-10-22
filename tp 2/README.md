@@ -18,13 +18,13 @@
     inet6 fe80::a00:27ff:fe3a:8eaa/64 scope link 
        valid_lft forever preferred_lft forever
 
-    afficher sa table de routage
+    - afficher sa table de routage
 
 [user@node1-lan1 ~]$ ip r s
 10.1.1.0/24 dev enp0s3 proto kernel scope link src 10.1.1.11 metric 100 
 10.1.2.0/24 via 10.1.1.254 dev enp0s3 proto static metric 100 
 
-    prouvez qu'il peut joindre node2.lan2.tp2
+    - prouvez qu'il peut joindre node2.lan2.tp2
 
 [user@node1-lan1 ~]$ ping node2-lan2
 PING node2-lan2 (10.1.2.12) 56(84) bytes of data.
@@ -36,7 +36,7 @@ PING node2-lan2 (10.1.2.12) 56(84) bytes of data.
 3 packets transmitted, 3 received, 0% packet loss, time 2004ms
 rtt min/avg/max/mdev = 1.026/1.324/1.564/0.223 ms
 
-    prouvez avec un traceroute que le paquet passe bien par router.tp2
+    - prouvez avec un traceroute que le paquet passe bien par router.tp2
 
 [user@node1-lan1 ~]$ traceroute node2-lan2
 traceroute to node2-lan2 (10.1.2.12), 30 hops max, 60 byte packets
@@ -47,7 +47,7 @@ II. Interlude accès internet
 
 ☀️ Sur router.tp2
 
-    prouvez que vous avez un accès internet (ping d'une IP publique)
+    - prouvez que vous avez un accès internet (ping d'une IP publique)
 
 [user@router ~]$ ping -c 1 216.58.214.174
 PING 216.58.214.174 (216.58.214.174) 56(84) bytes of data.
@@ -57,7 +57,7 @@ PING 216.58.214.174 (216.58.214.174) 56(84) bytes of data.
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 27.141/27.141/27.141/0.000 ms
 
-    prouvez que vous pouvez résoudre des noms publics (ping d'un nom de domaine public)
+   - prouvez que vous pouvez résoudre des noms publics (ping d'un nom de domaine public)
 [user@router ~]$ ping -c 1 amazon.com
 PING amazon.com (54.239.28.85) 56(84) bytes of data.
 64 bytes from 54.239.28.85 (54.239.28.85): icmp_seq=1 ttl=63 time=118 ms
@@ -68,7 +68,7 @@ rtt min/avg/max/mdev = 117.506/117.506/117.506/0.000 ms
 
 ☀️ Accès internet LAN1 et LAN2
 
-    dans le compte-rendu, mettez-moi que la conf des points précédents sur node2.lan1.tp2
+   - dans le compte-rendu, mettez-moi que la conf des points précédents sur node2.lan1.tp2
 
 [user@node2-lan1 ~]$ cat /etc/sysconfig/network-scripts/route-enp0s8 
 10.1.2.0/24 via 10.1.1.254 dev enp0s8
@@ -86,8 +86,8 @@ NETMASK=255.255.255.0
 
 DNS1=1.1.1.1
 
-    prouvez que node2.lan1.tp2 a un accès internet :
-        il peut ping une IP publique
+    - prouvez que node2.lan1.tp2 a un accès internet :
+       - il peut ping une IP publique
 
 [user@node2-lan1 ~]$ ping -c 1 216.58.214.174
 PING 216.58.214.174 (216.58.214.174) 56(84) bytes of data.
@@ -97,7 +97,7 @@ PING 216.58.214.174 (216.58.214.174) 56(84) bytes of data.
 1 packets transmitted, 1 received, 0% packet loss, time 0ms
 rtt min/avg/max/mdev = 35.201/35.201/35.201/0.000 ms
 
-    il peut ping un nom de domaine public
+   - il peut ping un nom de domaine public
 
 [user@node2-lan1 ~]$ ping -c 1 google.com
 PING google.com (142.250.75.238) 56(84) bytes of data.
@@ -111,8 +111,8 @@ rtt min/avg/max/mdev = 26.750/26.750/26.750/0.000 ms
 
 ☀️ Sur dhcp.lan1.tp2
 
-    n'oubliez pas de renommer la machine (node2.lan1.tp2 devient dhcp.lan1.tp2)
-    changez son adresse IP en 10.1.1.253
+   - n'oubliez pas de renommer la machine (node2.lan1.tp2 devient dhcp.lan1.tp2)
+   - changez son adresse IP en 10.1.1.253
 
 [user@dhcp-lan1 ~]$ ip a
 2: enp0s3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
@@ -122,12 +122,12 @@ rtt min/avg/max/mdev = 26.750/26.750/26.750/0.000 ms
     inet6 fe80::a00:27ff:fe27:b354/64 scope link 
        valid_lft forever preferred_lft forever
 
-    setup du serveur DHCP
-        commande d'installation du paquet
+    - setup du serveur DHCP
+       - commande d'installation du paquet
 
 [user@dhcp-lan1 ~]$ sudo dnf -y install dhcp-server 
 
-    fichier de conf
+    - fichier de conf
 
 [user@dhcp-lan1 ~]$ sudo cat /etc/dhcp/dhcpd.conf
 default-lease-time 900;
@@ -142,7 +142,7 @@ option subnet-mask 255.255.255.0;
 option domain-name-servers 1.1.1.1;
 }
 
-    service actif
+    - service actif
 
 [user@dhcp-lan1 ~]$ sudo firewall-cmd --add-service=dhcp 
 [user1@dhcp-lan1 ~]$ sudo firewall-cmd --reload
@@ -176,8 +176,8 @@ Oct 22 11:02:30 dhcp-lan1 systemd[1]: Started DHCPv4 Server Daemon.
 
 ☀️ Sur node1.lan1.tp2
 
-    demandez une IP au serveur DHCP
-    prouvez que vous avez bien récupéré une IP via le DHCP
+   - demandez une IP au serveur DHCP
+   - prouvez que vous avez bien récupéré une IP via le DHCP
 
 [user@node1-lan1 ~]$ sudo dhclient -v enp0s3
 [sudo] password for user1: 
@@ -195,12 +195,12 @@ DHCPREQUEST for 10.1.1.101 on enp0s8 to 255.255.255.255 port 67 (xid=0x8a495905)
 DHCPACK of 10.1.1.101 from 10.1.1.253 (xid=0x8a495905)
 bound to 10.1.1.101 -- renewal in 391 seconds.
 
-    prouvez que vous avez bien récupéré l'IP de la passerelle
+    - prouvez que vous avez bien récupéré l'IP de la passerelle
 
 [user@node1-lan1 ~]$ ip r s
 default via 10.1.1.254 dev enp0s8 proto dhcp src 10.1.1.100 metric 100 
 
-    prouvez que vous pouvez ping node1.lan2.tp2
+    - prouvez que vous pouvez ping node1.lan2.tp2
 
 [user@node1-lan1 ~]$ ping node1-lan2
 PING node1-lan2 (10.1.2.11) 56(84) bytes of data.
@@ -216,12 +216,12 @@ rtt min/avg/max/mdev = 1.460/1.758/1.985/0.220 ms
 
 ☀️ Sur web.lan2.tp2
 
-    installation de NGINX
+   - installation de NGINX
 
 [user@web-lan2 ~]$ sudo dnf install nginx
 
-    gestion de la racine web /var/www/site_nul/
-    configuration NGINX
+   - gestion de la racine web /var/www/site_nul/
+    - configuration NGINX
 
 [user@web-lan2 ~]$ cat /etc/nginx/nginx.conf
     server {
@@ -230,7 +230,7 @@ rtt min/avg/max/mdev = 1.460/1.758/1.985/0.220 ms
         server_name  site_nul.tp2;
         root         /var/www/site_nul/;
 
-    service actif
+    - service actif
 
 [user@web-lan2 ~]$ sudo systemctl status nginx
 ● nginx.service - The nginx HTTP and reverse proxy server
@@ -252,18 +252,18 @@ Oct 22 13:53:11 web-lan2 nginx[1573]: nginx: the configuration file /etc/nginx/n
 Oct 22 13:53:11 web-lan2 nginx[1573]: nginx: configuration file /etc/nginx/nginx.conf test is succes>
 Oct 22 13:53:11 web-lan2 systemd[1]: Started The nginx HTTP and reverse proxy server.
 
-    ouverture du port firewall
+    - ouverture du port firewall
 
 [user@web-lan2 ~]$ sudo firewall-cmd --permanent --add-service=http
 [user@web-lan2 ~]$ sudo firewall-cmd --reload
 
-    prouvez qu'il y a un programme NGINX qui tourne derrière le port 80 de la machine (commande ss)
+   -  prouvez qu'il y a un programme NGINX qui tourne derrière le port 80 de la machine (commande ss)
 
 [user@web-lan2 ~]$ sudo ss -ltunp | grep nginx
 tcp   LISTEN 0      511          0.0.0.0:80        0.0.0.0:*    users:(("nginx",pid=1576,fd=6),("nginx",pid=1575,fd=6))
 tcp   LISTEN 0      511             [::]:80           [::]:*    users:(("nginx",pid=1576,fd=7),("nginx",pid=1575,fd=7))
 
-    prouvez que le firewall est bien configuré
+    - prouvez que le firewall est bien configuré
 
 [user@web-lan2 ~]$ sudo firewall-cmd --list-all
 public (active)
@@ -283,8 +283,8 @@ public (active)
 
 ☀️ Sur node1.lan1.tp2
 
-    éditez le fichier hosts pour que site_nul.tp2 pointe vers l'IP de web.lan2.tp2
-    visitez le site nul avec une commande curl et en utilisant le nom site_nul.tp2
+   - éditez le fichier hosts pour que site_nul.tp2 pointe vers l'IP de web.lan2.tp2
+   - visitez le site nul avec une commande curl et en utilisant le nom site_nul.tp2
 
 [user@node1-lan1 ~]$ curl site_nul.tp2
 <!DOCTYPE html>
