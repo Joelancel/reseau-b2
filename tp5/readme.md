@@ -150,14 +150,7 @@ sshd:x:74:74:Privilege-separated SSH:/usr/share/empty.sshd:/sbin/nologin
 systemd-oom:x:993:993:systemd Userspace OOM Killer:/:/usr/sbin/nologin
 it4:x:1000:1000:it4:/home/it4:/bin/bash
 ```
-```
-ss -tupnl
-Netid State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                             
-tcp   LISTEN 2      1          10.0.3.15:13337      0.0.0.0:*    users:(("python3.9",pid=2312,fd=4))
-tcp   LISTEN 0      128          0.0.0.0:22         0.0.0.0:*    users:(("sshd",pid=699,fd=3))      
-tcp   LISTEN 0      128             [::]:22            [::]:*    users:(("sshd",pid=699,fd=4))
-```
-![serveur] (/serveur.py)
+
 ## 4. Bonus : DOS
 
 Le DOS dans l'esprit, souvent c'est :
@@ -183,3 +176,13 @@ Le DOS dans l'esprit, souvent c'est :
 
 - l'environnement dans lequel tourne le service est foireux (le user utilisé ?)
 - la machine devrait bloquer les connexions sortantes (pas de reverse shell possible)
+
+```
+ss -tupnl
+Netid State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                             
+tcp   LISTEN 2      1          10.0.3.15:13337      0.0.0.0:*    users:(("python3.9",pid=2312,fd=4))
+tcp   LISTEN 0      128          0.0.0.0:22         0.0.0.0:*    users:(("sshd",pid=699,fd=3))      
+tcp   LISTEN 0      128             [::]:22            [::]:*    users:(("sshd",pid=699,fd=4))
+```
+![serveur] (remediation/serveur.py)
+

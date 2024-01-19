@@ -119,6 +119,17 @@ while True:
                 # Decode the received data to a string
                 message = data.decode('utf-8')
                 logger.info("Le client %s a envoyé %s", addr, message)
+            match= re.match(pattern, userMessage)
+                 if match:
+            num1, operator, num2 = match.groups()
+               num1, num2 = int(num1), int(num2)
+
+        # Vérifiez si les nombres sont dans la plage [-100000, 100000]
+                 if -100000 <= num1 <= 100000 and -100000 <= num2 <= 100000
+                     else:
+                 raise ValueError("l'opération autorisée n'accepte que des nombres entiers compris entre -100000 et +100000")
+                     else:
+                  raise ValueError("l'opération autorisée n'accepte que les signes suivants (-,+,*) et des nombres entiers compris entre -100000 et +100000")
 
                 # Send a response to the client
                 result = eval(message)
